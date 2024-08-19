@@ -1,5 +1,12 @@
 import "#src/styles/globals.css";
 
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
@@ -9,12 +16,28 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+function TopNav() {
+  return (
+    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold dark:bg-slate-800 dark:text-white">
+      <div>Gallery</div>
+
+      <div>Sign In(why??)</div>
+    </nav>
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`font-sans ${inter.variable} flex flex-col gap-4`}
+    >
+      <body>
+        <TopNav />
+        {children}
+      </body>
     </html>
   );
 }
